@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package discountstrategy;
 
 /**
@@ -10,6 +5,7 @@ package discountstrategy;
  * @author smuth4
  */
 public class LineItem {
+    //What is a lineItem composed of?
     private Product product;
     private String prodId;
     private String prodName;
@@ -18,7 +14,9 @@ public class LineItem {
     private double discount;
     private int qty;
     
-    
+    public LineItem(){
+        
+    }
     
     public LineItem(Product product, int qty) {
         //when calling LineItem constructor need to add new Item(String itemID,
