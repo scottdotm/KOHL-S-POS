@@ -15,7 +15,7 @@ public class QtyDiscount implements DiscountStrategy {
     }
     
     @Override
-    public double getDiscountProductTotal(double unitPrice, int qty) {
+    public final double getDiscountProductTotal(double unitPrice, int qty) {
         if(qty >= minQty) {
             return (unitPrice * qty) - getAmountSaved(unitPrice, qty);
             }
@@ -26,7 +26,7 @@ public class QtyDiscount implements DiscountStrategy {
     }
     
     @Override
-    public double getAmountSaved(double unitPrice, int qty) {
+    public final double getAmountSaved(double unitPrice, int qty) {
         if(qty >= minQty){
             return unitPrice * qty * discountRate;
         } else{
@@ -36,20 +36,20 @@ public class QtyDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getDiscountRate() {
+    public final double getDiscountRate() {
         return discountRate;
     }
 
     @Override
-    public void setDiscountRate(double discountRate) {
+    public final void setDiscountRate(double discountRate) {
         this.discountRate = discountRate;
     }
 
-    public double getMinQty() {
+    public final double getMinQty() {
         return minQty;
     }
 
-    public void setMinQty(double minQty) {
+    public final void setMinQty(double minQty) {
         this.minQty = minQty;
     }
     

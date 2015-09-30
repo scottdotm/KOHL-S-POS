@@ -4,7 +4,7 @@ package discountstrategy;
  *
  * @author smuth4
  */
-public class Start {
+public class Startup {
 
     /**
      * @param args the command line arguments

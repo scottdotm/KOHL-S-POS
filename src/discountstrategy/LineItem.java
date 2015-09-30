@@ -1,7 +1,7 @@
 package discountstrategy;
 
 /**
- *
+ * 9/29/2015
  * @author smuth4
  */
 public class LineItem {
@@ -13,6 +13,7 @@ public class LineItem {
     private double subTotal;
     private double discount;
     private int qty;
+    //product information should come from fake databse array
     
     public LineItem(){
         
@@ -30,33 +31,33 @@ public class LineItem {
     }
     
     //subtotal helper method
-    private void setSubTotal(){
+    private final void setSubTotal(){
         subTotal = unitPrice * qty;
     }
     
-    public double getSubTotal(){
+    public final double getSubTotal(){
         setSubTotal();
         return subTotal;
     }
     
-    public double getNormalSubtotal() {
+    public final double getNormalSubtotal() {
         return product.getUnitPrice() * qty;
     }
 
-    public double getDiscountAmount() {
+    public final double getDiscountAmount() {
         return product.getDiscountStrategy().getDiscountProductTotal(product.getUnitPrice(), qty);
     }
     
    
-    public Product getProduct() {
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(Product product) {
         this.product = product;
     }
 
-    public int getQty() {
+    public final int getQty() {
         return qty;
     }
 
@@ -68,7 +69,7 @@ public class LineItem {
         }
     }
     
-    public String getProdId() {
+    public final String getProdId() {
         return prodId;
     }
 
@@ -76,7 +77,7 @@ public class LineItem {
         this.prodId = prodId;
     }
     
-    public String getProdName() {
+    public final String getProdName() {
         return prodName;
     }
 
@@ -84,7 +85,7 @@ public class LineItem {
         this.prodName = prodName;
     }
     
-    public double getUnitPrice() {
+    public final double getUnitPrice() {
         return unitPrice;
     }
     
@@ -92,7 +93,7 @@ public class LineItem {
         this.unitPrice = unitPrice;
     }
     
-    public double getDiscount() {
+    public final double getDiscount() {
         return discount;
     }
     
