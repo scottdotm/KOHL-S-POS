@@ -19,8 +19,8 @@ public class LineItem {
     }
     
     public LineItem(Product product, int qty) {
-        //when calling LineItem constructor need to add new Item(String itemID,
-        //String itemName, double unitPrice, DiscountStrategy discount)
+        //when calling LineItem constructor need to add new Product(String prodID,
+        //String prodName, double unitPrice, DiscountStrategy discount)
         setProduct(product);
         setQty(qty);
         setProdId(product.getProdId());
