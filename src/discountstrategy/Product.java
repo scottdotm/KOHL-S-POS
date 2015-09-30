@@ -6,7 +6,7 @@ package discountstrategy;
  */
 public class Product {
     private String prodId;
-    private String name;
+    private String prodName;
     private double unitPrice;
 //    private String description;
     private DiscountStrategy discount;
@@ -17,7 +17,7 @@ public class Product {
 
     public Product(String prodId, String name, double unitPrice, DiscountStrategy discount) {
         this.prodId = prodId;
-        this.name = name;
+        this.prodName = name;
         this.unitPrice = unitPrice;
         this.discount = discount;
     }
@@ -44,11 +44,11 @@ public class Product {
     }
 
     public String getName() {
-        return name;
+        return prodName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.prodName = name;
     }
 
     public double getUnitPrice() {
