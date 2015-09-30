@@ -4,6 +4,7 @@ package discountstrategy;
  * 9/28/2015
  * @author smuth4
  */
+// PercentOffDiscount is a special type of DiscountStrategy (that's how you know you have good naming)
 public class PercentOffDiscount implements DiscountStrategy {
     private double discountRate;
     

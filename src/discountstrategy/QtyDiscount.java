@@ -5,6 +5,7 @@ package discountstrategy;
  * @author smuth4
  */
 public class QtyDiscount implements DiscountStrategy {
+    //right click class name > refactor > extract interface > provide name > click all boxes
     private double discountRate;
     private double minQty;
     

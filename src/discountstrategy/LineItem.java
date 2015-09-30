@@ -12,6 +12,9 @@ package discountstrategy;
 public class LineItem {
     private Product product;
     private int qty;
+    //private DataAccessStrategy das;
+    //find product by its prodId using das
+    //find customer by their custId using das
     
     
     public double getNormalSubtotal() {

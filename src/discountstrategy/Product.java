@@ -12,7 +12,7 @@ public class Product {
     private DiscountStrategy discount;
 
     public Product(){
-        
+        //empty constructor to make use of setters
     }
 
     public Product(String prodId, String name, double unitPrice, DiscountStrategy discount) {
@@ -23,11 +23,11 @@ public class Product {
     }
     
     public double getAmountSaved(int qty) {
-        return discount.getAmountSaved(unitPrice, qty);
+        return discount.getAmountSaved(unitPrice, qty); //delegate work to discount object
     }
     
     public double getDiscountProductTotal(int qty) {
-        return discount.getDiscountProductTotal(unitPrice, qty);
+        return discount.getDiscountProductTotal(unitPrice, qty); //same delegation as above
     }
     
     public String getProdId() {
