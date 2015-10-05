@@ -9,8 +9,7 @@ public class LineItem {
     private int qty;
     private Product product;
 
-    public LineItem(DataAccessStrategy db, int qty, Product product) {
-        this.das = db;
+    public LineItem(Product product, int qty) {
         this.qty = qty;
         this.product = product;
     }
@@ -21,19 +20,13 @@ public class LineItem {
     }
     
 //    public final Customer findCustomer(final String custId){
-//        return db.findCustomer();
+//        return das.findCustomer();
 //        
 //    }
-    
     
     public LineItem() {
     }
 
-    
-    
-    
-    
-    
     public double getSubtotal(){
         
         return product.getUnitPrice()* qty; 
@@ -74,30 +67,12 @@ public class LineItem {
         this.product = product;
     }
 
-    public DataAccessStrategy getDb() {
+    public DataAccessStrategy getDas() {
         return das;
     }
 
-    public void setDb(DataAccessStrategy db) {
-        this.das = db;
+    public void setDb(DataAccessStrategy das) {
+        this.das = das;
     }
 
-    
-    
-   
-    
-   
-    
-    
-    
-    
-    public static void main(String[] args) {
-        LineItem item = new LineItem(new FakeDatabase(),4,new Product ("A100","Men's Shorts", 31.00,new PercentOffDiscount(.1)));
-        
-        double subtotal = item.getSubtotal();
-        double subtotalDiscount = item.getSubTotalDiscount();
-        System.out.println("Expected Subtotal = 124 and got :" + subtotal);
-        System.out.println("Expected Subtotal Discount = 12.4 and got :" + subtotalDiscount);
-    }
-    
 }

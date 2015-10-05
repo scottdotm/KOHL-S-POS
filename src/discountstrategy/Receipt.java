@@ -9,10 +9,14 @@ public class Receipt {
     //line item array
     //customer info form FakeDatabase array
     private LineItem[] lineItems = new LineItem[0];
-    private DataAccessStrategy das;
+    private DataAccessStrategy das = new FakeDatabase();
+    //customer object
     private Customer customer;
+    //subtotal of all products
     private double totalSubtotal;
+    //subtotal of all discounts
     private double totalDiscount;
+    //total of all items after discount
     private double amountTotal;
     //Constructor
     public Receipt(DataAccessStrategy das, String custId) {
@@ -20,17 +24,29 @@ public class Receipt {
         this.customer = das.findCustomer(custId);
     }
     //findCustomer
-    private Customer findCustomer(String custID) {
-        return das.findCustomer(custID);
+    private String getCustomer(String custID) {
+        return das.findCustomer(custID).getCustName();
     }
     //new line item
-    public void addToLineItems(String prodId, DataAccessStrategy das, int qty) {
-        // needs validation
-        LineItem[] tempItems = new LineItem[lineItems.length + 1];
-        System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
-        tempItems[lineItems.length] = new LineItem(das.findProduct(prodId), qty);
-        lineItems = tempItems;
+    public void addNewLineItem(String prodId, int qty) {
+        //line item constructor object
+        LineItem prodObj = new LineItem(das.findProduct(prodId),qty);
+        //temporary array
+        LineItem[] temp = new LineItem[lineItems.length + 1];
+        //for loop to copy current array into temp array
+        for (int i = 0; i < lineItems.length; i++) {
+            temp[i] = lineItems[i];
+        }
+        //add new line item
+        temp[temp.length - 1] = prodObj;
+        //copy temp array to lineItems array
+        lineItems = temp;
+        //null temp array
+        temp = null;
+        totalSubtotal += prodObj.getSubtotal();
     }
-    
-    
+    //get the array
+    public LineItem[] getLineItemArray() {
+        return lineItems;
+    }
 }
