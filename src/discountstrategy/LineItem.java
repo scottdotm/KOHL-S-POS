@@ -5,75 +5,49 @@ package discountstrategy;
  * @author smuth4
  */
 public class LineItem {
-    private DataAccessStrategy das;
-    private int qty;
+    private DataAccessStrategy das; // strategy component (DIP compliant)
     private Product product;
+    private int qty;
 
-    public LineItem(Product product, int qty) {
-        this.qty = qty;
-        this.product = product;
+    public LineItem(DataAccessStrategy das, String prodId, int qty) {
+        this.das = das;
+        this.product = findProduct(prodId);
+        setQty(qty);
     }
-
-    public final Product findProduct(final String prodId){
+    
+    private final Product findProduct(final String prodId) {
+        // validation needed
         return das.findProduct(prodId);
-        
     }
     
-//    public final Customer findCustomer(final String custId){
-//        return das.findCustomer();
-//        
-//    }
+    public final double getOrigPriceSubtotal() {
+        return product.getUnitPrice() * qty;
+    }
     
-    public LineItem() {
+    public final double getDiscountAmt() {
+        return product.getDiscountStrategy().getDiscountProductTotal(product.getUnitPrice(), qty);
     }
 
-    public double getSubtotal(){
-        
-        return product.getUnitPrice()* qty; 
-    }
-        
-    public double getSubTotalDiscount(){
-        
-        return getSubtotal() - product.getDiscountProductTotal(qty);
-    }    
-    
-   public String getProdId() {
-        return product.getProdId();
-    }
-    
-   public String getProdName(){
-       return product.getProdName();
-       
-   } 
-   
-   public double getUnitPrice(){
-       return product.getUnitPrice();
-       
-   }
-   
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public Product getProduct() {
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(final Product product) {
+        // validation needed
         this.product = product;
     }
 
-    public DataAccessStrategy getDas() {
-        return das;
+    public final int getQty() {
+        return qty;
     }
 
-    public void setDas(DataAccessStrategy das) {
-        this.das = das;
+    public final void setQty(final int qty) {
+        // validation needed
+        this.qty = qty;
     }
+    
+    
+}
     //debug
 //    public static void main(String[] args) {
 //        LineItem lineItem = new LineItem(new Product("A100", "Hat", 20.00, new QtyDiscount(0.10, 2)), 2);
@@ -88,5 +62,3 @@ public class LineItem {
 //                + "\t" + qty + "\t" + lineItem.product.getUnitPrice() + "\t"
 //            + lineItem.getSubtotal() + "\t" + lineItem.product.getAmountSaved(qty));
 //    }
-
-}

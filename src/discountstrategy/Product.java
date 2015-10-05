@@ -8,59 +8,52 @@ public class Product {
     private String prodId;
     private String prodName;
     private double unitPrice;
-    private DiscountStrategy discount;
+    private DiscountStrategy discountStrategy;
 
-    public Product() {
+    public Product(String prodId, String prodName, double unitPrice, DiscountStrategy discountStrategy) {
+        setProdId(prodId);
+        setDescription(prodName);
+        setUnitPrice(unitPrice);
+        setDiscountStrategy(discountStrategy);
     }
 
-    public Product(String prodId, String prodName, double unitPrice, DiscountStrategy discount) {
-        this.prodId = prodId;
-        this.prodName = prodName;
-        this.unitPrice = unitPrice;
-        this.discount = discount;
-    }
-    public final double getAmountSaved(int qty){
-        
-        return discount.getAmountSaved(unitPrice, qty);
-        
-    }
-    
-     public final double getDiscountProductTotal(int qty){
-        
-        return discount.getDiscountProductTotal(unitPrice, qty);
-        
-    }
     public final String getProdId() {
         return prodId;
     }
 
-    public final void setProdId(String prodId) {
+    public final void setProdId(final String prodId) {
+        // needs validation
         this.prodId = prodId;
     }
 
-    public final String getProdName() {
+    public final String getDescription() {
         return prodName;
     }
 
-    public void setProdName(String prodName) {
+    public final void setDescription(final String prodName) {
+        // needs validation
         this.prodName = prodName;
     }
 
-    public double getUnitPrice() {
+    public final double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public final void setUnitPrice(final double unitPrice) {
+        // needs validation
         this.unitPrice = unitPrice;
     }
 
-    public DiscountStrategy getDiscount() {
-        return discount;
+    public final DiscountStrategy getDiscountStrategy() {
+        return discountStrategy;
     }
 
-    public void setDiscount(DiscountStrategy discount) {
-        this.discount = discount;
+    public final void setDiscountStrategy(final DiscountStrategy discountStrategy) {
+        // needs validation
+        this.discountStrategy = discountStrategy;
     }
+    
+}
     //debug
 //    public static void main(String[] args) {
 //        Product product = new Product("P645", "Hat", 20.00, new PercentOffDiscount(0.10));
@@ -71,4 +64,3 @@ public class Product {
 //        double amtSaved2 = product2.getAmountSaved(2);
 //        System.out.println("Expected 4.00 and got: " + amtSaved2);
 //    }
-}
