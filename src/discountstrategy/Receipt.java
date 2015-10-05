@@ -25,13 +25,11 @@ public class Receipt {
         this.customer = das.findCustomer(custId);
         lineItems = new LineItem[0];
     }
-
-    
     //findCustomer
     private String getCustomer(String custID) {
         return das.findCustomer(custID).getCustName();
     }
-    
+   
     public void setDas(DataAccessStrategy das) {
         this.das = das;
     }
@@ -48,6 +46,6 @@ public class Receipt {
         temp[lineItems.length] = item;
         lineItems = temp;
         //null temp array
-        temp = null;
+//        temp = null;
     }
 }
