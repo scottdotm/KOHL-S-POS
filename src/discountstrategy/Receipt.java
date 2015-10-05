@@ -18,15 +18,19 @@ public class Receipt {
     private double totalDiscount;
     //total of all items after discount
     private double amountTotal;
+    
     //Constructor
-    public Receipt(DataAccessStrategy das, String custId) {
-        this.das = das;
-        this.customer = das.findCustomer(custId);
-    }
+//    public Receipt(DataAccessStrategy das, String custId) {
+//        this.das = das;
+//        this.customer = das.findCustomer(custId);
+//    }
+
+    
     //findCustomer
     private String getCustomer(String custID) {
         return das.findCustomer(custID).getCustName();
     }
+    
     //new line item
     public void addNewLineItem(String prodId, int qty) {
         //line item constructor object
@@ -45,8 +49,24 @@ public class Receipt {
         temp = null;
         totalSubtotal += prodObj.getSubtotal();
     }
+    
     //get the array
     public LineItem[] getLineItemArray() {
         return lineItems;
     }
+    
+//    public static void main(String[] args) {
+//
+//        Receipt receipt = new Receipt();
+//
+//        receipt.addNewLineItem("2002", 4);
+//        receipt.addNewLineItem("2004", 1);
+//
+//        LineItem[] items = receipt.getLineItemArray();
+//        for (int i = 0; i < receipt.getLineItemArray().length; i++) {
+//            System.out.println(items[i].getProduct().getProdId() + "\t"
+//                    + items[i].getProduct().getProdName() + "\t" + items[i].getQty()
+//                    + "\t" + items[i].getSubtotal() + "\t" + items[i].getDiscount());
+//        }
+//}
 }

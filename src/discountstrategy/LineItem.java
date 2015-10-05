@@ -74,5 +74,19 @@ public class LineItem {
     public void setDas(DataAccessStrategy das) {
         this.das = das;
     }
+    //debug
+//    public static void main(String[] args) {
+//        LineItem lineItem = new LineItem(new Product("A100", "Hat", 20.00, new QtyDiscount(0.10, 2)), 2);
+////        create a Receipt LineItem
+////         ID     NAME      QTY     PRICE     SUBTOTAL     DISCOUNT
+//        int qty = lineItem.getQty();
+//        
+//        System.out.println("Should get:");
+//        System.out.println("A100   Hat    2    20.0   40.0   4.0");
+//        System.out.println("Got:");
+//        System.out.println(lineItem.product.getProdId() + "\t" + lineItem.product.getProdName() 
+//                + "\t" + qty + "\t" + lineItem.product.getUnitPrice() + "\t"
+//            + lineItem.getSubtotal() + "\t" + lineItem.product.getAmountSaved(qty));
+//    }
 
 }

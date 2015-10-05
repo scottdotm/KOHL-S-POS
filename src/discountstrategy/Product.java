@@ -61,4 +61,14 @@ public class Product {
     public void setDiscount(DiscountStrategy discount) {
         this.discount = discount;
     }
+    //debug
+//    public static void main(String[] args) {
+//        Product product = new Product("P645", "Hat", 20.00, new PercentOffDiscount(0.10));
+//        double amtSaved = product.getAmountSaved(2);
+//        System.out.println("Expected 4.00 and got: " + amtSaved);
+//        
+//        Product product2 = new Product("P645", "Hat", 20.00, new QtyDiscount(0.10, 2));
+//        double amtSaved2 = product2.getAmountSaved(2);
+//        System.out.println("Expected 4.00 and got: " + amtSaved2);
+//    }
 }
