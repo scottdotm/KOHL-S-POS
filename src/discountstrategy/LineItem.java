@@ -13,28 +13,33 @@ public class LineItem {
     private double subTotal;
     private double discount;
     private int qty;
+    private DataAccessStrategy das;
     //product information should come from fake databse array
     
     public LineItem(){
         
     }
     
-    public LineItem(Product product, int qty) {
+    public LineItem(DataAccessStrategy das, Product product, int qty) {
         //when calling LineItem constructor need to add new Product(String prodID,
         //String prodName, double unitPrice, DiscountStrategy discount)
-        setProduct(product);
+        this.das = das;
+        this.product = findProduct(prodId);
         setQty(qty);
         setProdId(product.getProdId());
         setProdName(product.getName());
         setUnitPrice(product.getUnitPrice());
         setDiscount(product.getAmountSaved(qty)); 
     }
-    
+    //findProduct
+    private Product findProduct(String prodId) {
+        return das.findProduct(prodId);
+    }
     //subtotal helper method
-    private final void setSubTotal(){
+    private void setSubTotal(){
         subTotal = unitPrice * qty;
     }
-    
+
     public final double getSubTotal(){
         setSubTotal();
         return subTotal;
@@ -114,7 +119,7 @@ public class LineItem {
 //        double discount = lineItem.getDiscount();
 //        
 //        System.out.println("Should get:");
-//        System.out.println("A101   Cap    2    20.0   20.0   4.0");
+//        System.out.println("A101   Cap    2    20.0   40.0   4.0");
 //        System.out.println("Got:");
 //        System.out.println(id + "\t" + name + "\t" + qty + "\t" + unitPrice + "\t"
 //            + subtotal + "\t" + discount);

@@ -11,9 +11,9 @@ public class Product {
 //    private String description;
     private DiscountStrategy discount;
 
-    public Product(){
-        //empty constructor to make use of setters
-    }
+//    public Product(){
+//        //empty constructor to make use of setters
+//    }
 
     public Product(String prodId, String name, double unitPrice, DiscountStrategy discount) {
         this.prodId = prodId;
@@ -39,7 +39,7 @@ public class Product {
         }
     }
 
-    public void setProdId(String prodId) {
+    public final void setProdId(String prodId) {
         this.prodId = prodId;
     }
 
