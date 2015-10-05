@@ -22,7 +22,7 @@ public class Receipt {
     //Constructor
     public Receipt(DataAccessStrategy das, String custId) {
         this.setDas(das);
-        this.customer = findCustomer(custId);
+        this.customer = das.findCustomer(custId);
         lineItems = new LineItem[0];
     }
 
@@ -34,5 +34,20 @@ public class Receipt {
     
     public void setDas(DataAccessStrategy das) {
         this.das = das;
+    }
+    //add a new line item
+    public final void addLineItem(final String prodId, final int qty) {
+        LineItem item = new LineItem(das, prodId, qty);
+        addToArray(item);
+    }
+    //add to an array
+    private void addToArray(final LineItem item) {
+        LineItem[] temp = new LineItem[lineItems.length + 1];
+        System.arraycopy(lineItems, 0, temp, 0, lineItems.length);
+        //copy array
+        temp[lineItems.length] = item;
+        lineItems = temp;
+        //null temp array
+        temp = null;
     }
 }
