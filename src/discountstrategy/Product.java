@@ -13,37 +13,37 @@ public class Product {
     public Product() {
     }
 
-    public Product(String prodId, String title, double unitPrice, DiscountStrategy discount) {
+    public Product(String prodId, String prodName, double unitPrice, DiscountStrategy discount) {
         this.prodId = prodId;
-        this.prodName = title;
+        this.prodName = prodName;
         this.unitPrice = unitPrice;
         this.discount = discount;
     }
-    public double getAmountSaved(int qty){
+    public final double getAmountSaved(int qty){
         
         return discount.getAmountSaved(unitPrice, qty);
         
     }
     
-     public double getDiscountProductTotal(int qty){
+     public final double getDiscountProductTotal(int qty){
         
         return discount.getDiscountProductTotal(unitPrice, qty);
         
     }
-    public String getProdId() {
+    public final String getProdId() {
         return prodId;
     }
 
-    public void setProdId(String prodId) {
+    public final void setProdId(String prodId) {
         this.prodId = prodId;
     }
 
-    public String getTitle() {
+    public final String getProdName() {
         return prodName;
     }
 
-    public void setTitle(String title) {
-        this.prodName = title;
+    public void setProdName(String prodName) {
+        this.prodName = prodName;
     }
 
     public double getUnitPrice() {

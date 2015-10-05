@@ -41,8 +41,8 @@ public class LineItem {
         return product.getProdId();
     }
     
-   public String getTitle(){
-       return product.getTitle();
+   public String getProdName(){
+       return product.getProdName();
        
    } 
    
@@ -71,7 +71,7 @@ public class LineItem {
         return das;
     }
 
-    public void setDb(DataAccessStrategy das) {
+    public void setDas(DataAccessStrategy das) {
         this.das = das;
     }
 
