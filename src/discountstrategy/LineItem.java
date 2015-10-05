@@ -5,124 +5,99 @@ package discountstrategy;
  * @author smuth4
  */
 public class LineItem {
-    //What is a lineItem composed of?
-    private Product product;
-    private String prodId;
-    private String prodName;
-    private double unitPrice;
-    private double subTotal;
-    private double discount;
-    private int qty;
     private DataAccessStrategy das;
-    //product information should come from fake databse array
-    
-    public LineItem(){
-        
-    }
-    
-    public LineItem(DataAccessStrategy das, Product product, int qty) {
-        //when calling LineItem constructor need to add new Product(String prodID,
-        //String prodName, double unitPrice, DiscountStrategy discount)
-        this.das = das;
-        this.product = findProduct(prodId);
-        setQty(qty);
-        setProdId(product.getProdId());
-        setProdName(product.getName());
-        setUnitPrice(product.getUnitPrice());
-        setDiscount(product.getAmountSaved(qty)); 
-    }
-    //findProduct
-    private Product findProduct(String prodId) {
-        return das.findProduct(prodId);
-    }
-    //subtotal helper method
-    private void setSubTotal(){
-        subTotal = unitPrice * qty;
-    }
+    private int qty;
+    private Product product;
 
-    public final double getSubTotal(){
-        setSubTotal();
-        return subTotal;
-    }
-    
-    public final double getNormalSubtotal() {
-        return product.getUnitPrice() * qty;
-    }
-
-    public final double getDiscountAmount() {
-        return product.getDiscountStrategy().getDiscountProductTotal(product.getUnitPrice(), qty);
-    }
-    
-   
-    public final Product getProduct() {
-        return product;
-    }
-
-    public final void setProduct(Product product) {
+    public LineItem(DataAccessStrategy db, int qty, Product product) {
+        this.das = db;
+        this.qty = qty;
         this.product = product;
     }
 
-    public final int getQty() {
+    public final Product findProduct(final String prodId){
+        return das.findProduct(prodId);
+        
+    }
+    
+//    public final Customer findCustomer(final String custId){
+//        return db.findCustomer();
+//        
+//    }
+    
+    
+    public LineItem() {
+    }
+
+    
+    
+    
+    
+    
+    public double getSubtotal(){
+        
+        return product.getUnitPrice()* qty; 
+    }
+        
+    public double getSubTotalDiscount(){
+        
+        return getSubtotal() - product.getDiscountProductTotal(qty);
+    }    
+    
+   public String getProdId() {
+        return product.getProdId();
+    }
+    
+   public String getTitle(){
+       return product.getTitle();
+       
+   } 
+   
+   public double getUnitPrice(){
+       return product.getUnitPrice();
+       
+   }
+   
+    public int getQty() {
         return qty;
     }
 
-    public final void setQty(int qty) throws IllegalArgumentException {
-        if (qty < 0) {
-            throw new IllegalArgumentException();
-        } else {
-            this.qty = qty;
-        }
-    }
-    
-    public final String getProdId() {
-        return prodId;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
-    public final void setProdId(String prodId) {
-        this.prodId = prodId;
-    }
-    
-    public final String getProdName() {
-        return prodName;
+    public Product getProduct() {
+        return product;
     }
 
-    public final void setProdName(String prodName) {
-        this.prodName = prodName;
+    public void setProduct(Product product) {
+        this.product = product;
     }
+
+    public DataAccessStrategy getDb() {
+        return das;
+    }
+
+    public void setDb(DataAccessStrategy db) {
+        this.das = db;
+    }
+
     
-    public final double getUnitPrice() {
-        return unitPrice;
-    }
     
-    public final void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
+   
     
-    public final double getDiscount() {
-        return discount;
-    }
+   
     
-    public final void setDiscount(double discount) {
-        this.discount = discount;
+    
+    
+    
+    public static void main(String[] args) {
+        LineItem item = new LineItem(new FakeDatabase(),4,new Product ("A100","Men's Shorts", 31.00,new PercentOffDiscount(.1)));
+        
+        double subtotal = item.getSubtotal();
+        double subtotalDiscount = item.getSubTotalDiscount();
+        System.out.println("Expected Subtotal = 124 and got :" + subtotal);
+        System.out.println("Expected Subtotal Discount = 12.4 and got :" + subtotalDiscount);
     }
-     
-//    //Testing
-//        public static void main(String[] args) {
-//        LineItem lineItem = new LineItem(new Product("A101", "Cap", 20.00, new QtyDiscount(0.10, 2)), 2);
-//        //create a Receipt LineItem
-//        // ID     NAME      QTY     PRICE     SUBTOTAL     DISCOUNT
-//        String id = lineItem.getProdId();
-//        String name = lineItem.getProdName();
-//        int qty = lineItem.getQty();
-//        double unitPrice = lineItem.getUnitPrice();
-//        double subtotal = lineItem.getSubTotal();
-//        double discount = lineItem.getDiscount();
-//        
-//        System.out.println("Should get:");
-//        System.out.println("A101   Cap    2    20.0   40.0   4.0");
-//        System.out.println("Got:");
-//        System.out.println(id + "\t" + name + "\t" + qty + "\t" + unitPrice + "\t"
-//            + subtotal + "\t" + discount);
-//    }
     
 }

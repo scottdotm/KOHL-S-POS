@@ -15,16 +15,16 @@ public class Receipt {
     private double totalDiscount;
     private double amountTotal;
     //Constructor
-    public Receipt(DataAccessStrategy das, Customer customer) {
+    public Receipt(DataAccessStrategy das, String custId) {
         this.das = das;
-        this.customer = customer;
+        this.customer = das.findCustomer(custId);
     }
     //findCustomer
     private Customer findCustomer(String custID) {
         return das.findCustomer(custID);
     }
     //new line item
-    public void addToLineItems(String prodId, int qty) {
+    public void addToLineItems(String prodId, DataAccessStrategy das, int qty) {
         // needs validation
         LineItem[] tempItems = new LineItem[lineItems.length + 1];
         System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
